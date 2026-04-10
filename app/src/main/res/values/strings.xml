@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="judul">verifikasi login</string>
+    <string name="judul_baru">kode berhasil dikirim</string>
+    <string name="anak_baru">silahkan perikasa nomor anda</string>
+
 </resources>
