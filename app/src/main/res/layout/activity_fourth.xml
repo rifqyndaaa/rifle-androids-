@@ -1,20 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/main"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <!-- Tombol 1 -->
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tombol 1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <!-- Snackbar -->
+            <Button
+                android:id="@+id/btnShowSnackbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Show Snackbar"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/btn1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <!-- Alert Dialog -->
+            <Button
+                android:id="@+id/btnShowAlertDialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Show Alert Dialog"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/btnShowSnackbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!-- Tombol Kembali -->
     <Button
         android:id="@+id/btnSubmit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="kembali"
+        android:text="Kembali"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
