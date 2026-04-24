@@ -32,7 +32,15 @@ class FourthActivity : AppCompatActivity() {
             )
             insets
         }
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Activity Fifth"
+            subtitle = "Ini adalah subtitle"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
 
+        }
         // Ambil Data dari Intent
         val name = intent.getStringExtra("name")
         val from = intent.getStringExtra("from")

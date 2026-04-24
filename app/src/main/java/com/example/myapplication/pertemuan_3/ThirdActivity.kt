@@ -26,6 +26,15 @@ class ThirdActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Activity Fifth"
+            subtitle = "Ini adalah subtitle"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+
+        }
 
 
         binding.btnkirim.setOnClickListener {
