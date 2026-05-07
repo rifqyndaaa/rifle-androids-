@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityAuthBinding
+import com.example.myapplication.pertemuan_4.FourthActivity
 
 class AuthActivity : AppCompatActivity() {
 
@@ -19,9 +20,9 @@ class AuthActivity : AppCompatActivity() {
 
         sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
-        // Jika sudah login langsung ke MainActivity
+        // Jika sudah login langsung ke FourthActivity
         if (sharedPref.getBoolean("isLogin", false)) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, FourthActivity::class.java))
             finish()
         }
 
@@ -38,7 +39,8 @@ class AuthActivity : AppCompatActivity() {
                 editor.putString("username", username)
                 editor.apply()
 
-                startActivity(Intent(this, MainActivity::class.java))
+                // Pindah ke FourthActivity
+                startActivity(Intent(this, FourthActivity::class.java))
                 finish()
 
             } else {
