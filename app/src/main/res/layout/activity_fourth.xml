@@ -78,6 +78,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+
+            <!-- Tombol ke Pertemuan 7 -->
+            <Button
+                android:id="@+id/btnPertemuan7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Pertemuan 7"
+                app:layout_constraintTop_toBottomOf="@id/btnWebView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

@@ -11,6 +11,7 @@ import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityFourthBinding
 import com.example.myapplication.pertemuan_5.WebViewActivity
+import com.example.myapplication.pertemuan_7.SeventhActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -26,8 +27,8 @@ class FourthActivity : AppCompatActivity() {
         binding = ActivityFourthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-
+        // Edge to Edge padding
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             v.setPadding(
@@ -49,7 +50,6 @@ class FourthActivity : AppCompatActivity() {
 
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
@@ -60,25 +60,21 @@ class FourthActivity : AppCompatActivity() {
 
         Log.e("Data Intent", "Nama: $name , Usia: $age, Asal: $from")
 
-        // Tombol ke MainActivity
+        // Ke MainActivity
         binding.btnSubmit2.setOnClickListener {
-
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
         // Snackbar
         binding.btnShowSnackbar.setOnClickListener {
-
             Snackbar.make(
                 binding.root,
                 "Ini adalah Snackbar",
                 Snackbar.LENGTH_SHORT
             )
                 .setAction("Tutup") {
-
                     finish()
-
                     Log.e("Info Snackbar", "Snackbar ditutup")
                 }
                 .show()
@@ -86,30 +82,28 @@ class FourthActivity : AppCompatActivity() {
 
         // Alert Dialog
         binding.btnShowAlertDialog.setOnClickListener {
-
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
                 .setMessage("Apakah Anda yakin ingin melanjutkan?")
                 .setPositiveButton("Ya") { dialog, _ ->
-
                     dialog.dismiss()
-
                     Log.e("Info Dialog", "Anda memilih Ya!")
                 }
-
                 .setNegativeButton("Batal") { dialog, _ ->
-
                     dialog.dismiss()
-
                     Log.e("Info Dialog", "Anda memilih Tidak!")
                 }
                 .show()
         }
 
-        // Tombol ke WebViewActivity
+        // WebViewActivity
         binding.btnWebView.setOnClickListener {
-
             startActivity(Intent(this, WebViewActivity::class.java))
+        }
+
+        // 👉 PERTEMUAN 7
+        binding.btnPertemuan7.setOnClickListener {
+            startActivity(Intent(this, SeventhActivity::class.java))
         }
 
         Log.e("onCreate", "FourthActivity dibuat pertama kali")
@@ -117,13 +111,11 @@ class FourthActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         Log.e("onStart", "FourthActivity terlihat di layar")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         Log.e("onDestroy", "FourthActivity dihapus dari stack")
     }
 }
