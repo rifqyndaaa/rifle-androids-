@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityAuthBinding
-import com.example.myapplication.pertemuan_4.FourthActivity
+import com.example.myapplication.Home.pertemuan_4.FourthActivity
 
 class AuthActivity : AppCompatActivity() {
 

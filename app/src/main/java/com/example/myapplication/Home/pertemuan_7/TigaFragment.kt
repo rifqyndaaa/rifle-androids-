@@ -1,4 +1,4 @@
-package com.example.myapplication.pertemuan_7
+package com.example.myapplication.Home.pertemuan_7
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 
-class SatuFragment : Fragment() {
+class TigaFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -15,6 +15,6 @@ class SatuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_satu, container, false)
+        return inflater.inflate(R.layout.fragment_tiga, container, false)
     }
 }
