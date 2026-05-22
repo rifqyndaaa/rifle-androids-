@@ -12,6 +12,7 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityFourthBinding
 import com.example.myapplication.Home.pertemuan_5.WebViewActivity
 import com.example.myapplication.Home.pertemuan_7.SeventhActivity
+import com.example.myapplication.Home.pertemuan_9.NinthActivity
 import com.example.myapplication.BaseActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -97,9 +98,12 @@ class FourthActivity : AppCompatActivity() {
             startActivity(Intent(this, SeventhActivity::class.java))
         }
 
-        // 👉 TAMBAHAN BASE ACTIVITY
         binding.btnBaseActivity.setOnClickListener {
             startActivity(Intent(this, BaseActivity::class.java))
+        }
+
+        binding.btnPertemuan9.setOnClickListener {
+            startActivity(Intent(this, NinthActivity::class.java))
         }
 
         Log.e("onCreate", "FourthActivity dibuat pertama kali")
