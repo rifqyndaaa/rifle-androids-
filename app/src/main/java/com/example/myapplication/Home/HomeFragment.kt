@@ -102,6 +102,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun loadCatFact() {
         // Mengubah teks sementara menjadi loading saat proses fetch berjalan
         binding.tvCatFact.text = "Loading cat fact..."
