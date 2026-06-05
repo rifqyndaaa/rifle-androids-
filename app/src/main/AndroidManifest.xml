@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permission Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,73 +14,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-
-        <!-- Pertemuan 10 -->
+        <activity
+            android:name=".Message.tutorial.TutorialMessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Message.tutorial.TutrialMessageActivity"
+            android:exported="false" /> <!-- Pertemuan 10 -->
         <activity
             android:name=".Home.pertemuan_10.TenthActivity"
-            android:exported="false" />
-
-        <!-- Pertemuan 9 -->
+            android:exported="false" /> <!-- Pertemuan 9 -->
         <activity
             android:name=".Home.pertemuan_9.NinthActivity"
-            android:exported="false" />
-
-        <!-- Base Activity -->
+            android:exported="false" /> <!-- Base Activity -->
         <activity
             android:name=".BaseActivity"
-            android:exported="false" />
-
-        <!-- Pertemuan 7 -->
+            android:exported="false" /> <!-- Pertemuan 7 -->
         <activity
             android:name=".Home.pertemuan_7.SeventhActivity"
-            android:exported="false" />
-
-        <!-- Splash Screen -->
+            android:exported="false" /> <!-- Splash Screen -->
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <!-- Auth -->
+        </activity> <!-- Auth -->
         <activity
             android:name=".AuthActivity"
-            android:exported="false" />
-
-        <!-- Pertemuan 5 -->
+            android:exported="false" /> <!-- Pertemuan 5 -->
         <activity
             android:name=".Home.pertemuan_5.WebViewActivity"
             android:exported="false" />
-
         <activity
             android:name=".Home.pertemuan_5.FifthActivity"
-            android:exported="false" />
-
-        <!-- Pertemuan 3 -->
+            android:exported="false" /> <!-- Pertemuan 3 -->
         <activity
             android:name=".Home.pertemuan_3.ThirdResultActivity"
             android:exported="false" />
-
         <activity
             android:name=".Home.pertemuan_3.ThirdActivity"
-            android:exported="false" />
-
-        <!-- Pertemuan 4 -->
+            android:exported="false" /> <!-- Pertemuan 4 -->
         <activity
             android:name=".Home.pertemuan_4.FourthActivity"
-            android:exported="false" />
-
-        <!-- Main -->
+            android:exported="false" /> <!-- Main -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

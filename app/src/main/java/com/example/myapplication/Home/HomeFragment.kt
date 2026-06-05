@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.BaseActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.Home.pertemuan_10.TenthActivity
 import com.example.myapplication.Home.pertemuan_5.WebViewActivity
 import com.example.myapplication.Home.pertemuan_7.SeventhActivity
 import com.example.myapplication.Home.pertemuan_9.NinthActivity
+import com.example.myapplication.data.api.CatFactApiClient
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -27,30 +30,33 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Panggil fungsi API pertama kali saat Fragment dibuka (opsional)
+        loadCatFact()
+
+        // Setup semua action listener tombol di sini agar rapi
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
         // Tombol 1
         binding.btn1.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "Tombol 1 Ditekan",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(requireContext(), "Tombol 1 Ditekan", Toast.LENGTH_SHORT).show()
         }
 
         // Snackbar
         binding.btnShowSnackbar.setOnClickListener {
-            Snackbar.make(
-                binding.root,
-                "Ini Snackbar",
-                Snackbar.LENGTH_SHORT
-            ).show()
+            Snackbar.make(binding.root, "Ini Snackbar", Snackbar.LENGTH_SHORT).show()
         }
 
         // Alert Dialog
         binding.btnShowAlertDialog.setOnClickListener {
-
             AlertDialog.Builder(requireContext())
                 .setTitle("Alert Dialog")
                 .setMessage("Ini contoh Alert Dialog")
@@ -62,71 +68,52 @@ class HomeFragment : Fragment() {
 
         // WebView
         binding.btnWebView.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                WebViewActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), WebViewActivity::class.java))
         }
 
         // Pertemuan 7
         binding.btnPertemuan7.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                SeventhActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), SeventhActivity::class.java))
         }
 
         // Base Activity
         binding.btnBaseActivity.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                BaseActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), BaseActivity::class.java))
         }
 
         // Pertemuan 9
         binding.btnPertemuan9.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                NinthActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), NinthActivity::class.java))
         }
 
         // Pertemuan 10
         binding.btnPertemuan10.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                TenthActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), TenthActivity::class.java))
         }
 
-        // Ke MainActivity
+        // Main Activity
         binding.btnSubmit2.setOnClickListener {
-
-            val intent = Intent(
-                requireContext(),
-                MainActivity::class.java
-            )
-
-            startActivity(intent)
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
-        return binding.root
+        // Tombol Refresh API
+        binding.btnRefresh.setOnClickListener {
+            loadCatFact()
+        }
+    }
+
+    private fun loadCatFact() {
+        // Mengubah teks sementara menjadi loading saat proses fetch berjalan
+        binding.tvCatFact.text = "Loading cat fact..."
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = CatFactApiClient.apiService.getCatFact()
+                binding.tvCatFact.text = response.fact
+            } catch (e: Exception) {
+                binding.tvCatFact.text = "Gagal mengambil fakta kucing."
+            }
+        }
     }
 
     override fun onDestroyView() {

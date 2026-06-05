@@ -1,11 +1,12 @@
 package com.example.myapplication.Message
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.myapplication.Message.tutorial.TutorialMessageActivity
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentMessageBinding
 
 class MessageFragment : Fragment() {
@@ -31,7 +32,6 @@ class MessageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentMessageBinding.inflate(
             inflater,
             container,
@@ -47,20 +47,47 @@ class MessageFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Toolbar
-        (requireActivity() as AppCompatActivity)
-            .setSupportActionBar(binding.toolbar)
+        // Setup Toolbar
+        (requireActivity() as AppCompatActivity).apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.title = "Message Fragment"
+        }
 
-        (requireActivity() as AppCompatActivity)
-            .supportActionBar?.title = "Message Fragment"
+        setHasOptionsMenu(true)
 
-        // Adapter
-        val adapter = MessageAdapter(
+        // Setup Adapter
+        binding.listMessageItems.adapter = MessageAdapter(
             requireContext(),
             messageList
         )
+    }
 
-        binding.listMessageItems.adapter = adapter
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater
+    ) {
+        inflater.inflate(
+            R.menu.message_toolbar_menu,
+            menu
+        )
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+
+            R.id.action_tutorial -> {
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        TutorialMessageActivity::class.java
+                    )
+                )
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onDestroyView() {
