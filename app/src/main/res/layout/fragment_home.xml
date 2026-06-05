@@ -1,172 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FB"
+    android:background="#F5F5F5"
     tools:context=".Home.HomeFragment">
 
-    <!-- Header Background -->
-    <View
-        android:id="@+id/background_header"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:background="@drawable/bg_header_wave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:elevation="2dp">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:title="Home"
-        app:titleTextColor="@android:color/white"
-        app:subtitle="Menu Pertemuan"
-        app:subtitleTextColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:subtitle="Menu Pertemuan"
+            app:subtitleTextColor="#757575"
+            app:title="Home"
+            app:titleTextColor="#212121" />
 
-    <!-- ScrollView agar konten aman di layar kecil -->
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp">
+            android:padding="16dp">
 
-            <!-- Card Menu -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardMenu"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                android:text="Daftar Menu Praktikum"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/grid_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:columnCount="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/textView2">
+
+                <Button
+                    android:id="@+id/btn1"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Tombol 1"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnShowSnackbar"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Show Snackbar"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnShowAlertDialog"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Show Alert"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnWebView"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Buka WebView"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnPertemuan7"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Pertemuan 7"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnBaseActivity"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Base Activity"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnPertemuan9"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Pertemuan 9"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnPertemuan10"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Pertemuan 10"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1" />
+
+                <Button
+                    android:id="@+id/btnSubmit2"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Ke MainActivity"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:backgroundTint="#1976D2"
+                    app:layout_columnSpan="2"
+                    app:layout_columnWeight="1" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardCatFact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/grid_button">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="16dp">
 
-                    <Button
-                        android:id="@+id/btn1"
+                    <TextView
+                        android:id="@+id/tvCatFact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tombol 1" />
+                        android:gravity="center"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text="Loading cat fact..."
+                        android:textColor="#616161"
+                        android:textSize="14sp" />
 
                     <Button
-                        android:id="@+id/btnShowSnackbar"
-                        android:layout_width="match_parent"
+                        android:id="@+id/btnRefresh"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Show Snackbar" />
-
-                    <Button
-                        android:id="@+id/btnShowAlertDialog"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Show Alert Dialog" />
-
-                    <Button
-                        android:id="@+id/btnWebView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Buka Web View" />
-
-                    <Button
-                        android:id="@+id/btnPertemuan7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Pertemuan 7" />
-
-                    <Button
-                        android:id="@+id/btnBaseActivity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Base Activity" />
-
-                    <Button
-                        android:id="@+id/btnPertemuan9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Pertemuan 9" />
-
-                    <Button
-                        android:id="@+id/btnPertemuan10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Pertemuan 10" />
+                        android:layout_marginTop="8dp"
+                        android:text="Refresh"
+                        android:textAllCaps="false"
+                        android:textColor="#1976D2" />
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Cat Fact Section -->
+            </androidx.cardview.widget.CardView>
+
             <TextView
-                android:id="@+id/tvCatFact"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:text="Loading cat fact..."
-                android:textColor="#333333"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardMenu" />
-
-            <Button
-                android:id="@+id/btnRefresh"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:id="@+id/tvGalleryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Refresh"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:text="Galeri Foto"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvCatFact" />
+                app:layout_constraintTop_toBottomOf="@id/cardCatFact" />
 
-            <!-- Bottom Navigation Button -->
-            <Button
-                android:id="@+id/btnSubmit2"
-                android:layout_width="0dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGallery"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:text="Ke MainActivity"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnRefresh" />
+                app:layout_constraintTop_toBottomOf="@+id/tvGalleryTitle"
+                tools:listitem="@android:layout/activity_list_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,13 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.BaseActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.Home.pertemuan_10.TenthActivity
 import com.example.myapplication.Home.pertemuan_5.WebViewActivity
 import com.example.myapplication.Home.pertemuan_7.SeventhActivity
 import com.example.myapplication.Home.pertemuan_9.NinthActivity
+import com.example.myapplication.Home.photo.PhotoAdapter
 import com.example.myapplication.data.api.CatFactApiClient
+import com.example.myapplication.data.api.PhotoApiClient
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -37,10 +41,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Panggil fungsi API pertama kali saat Fragment dibuka (opsional)
+        // Memuat data awal saat Fragment pertama kali terbuka
         loadCatFact()
+        loadPhoto()
 
-        // Setup semua action listener tombol di sini agar rapi
+        // Setup action listener tombol
         setupClickListeners()
     }
 
@@ -99,12 +104,11 @@ class HomeFragment : Fragment() {
         // Tombol Refresh API
         binding.btnRefresh.setOnClickListener {
             loadCatFact()
+            loadPhoto() // Jika ingin tombol refresh turut memperbarui galeri foto
         }
     }
 
-
     private fun loadCatFact() {
-        // Mengubah teks sementara menjadi loading saat proses fetch berjalan
         binding.tvCatFact.text = "Loading cat fact..."
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -113,6 +117,30 @@ class HomeFragment : Fragment() {
                 binding.tvCatFact.text = response.fact
             } catch (e: Exception) {
                 binding.tvCatFact.text = "Gagal mengambil fakta kucing."
+            }
+        }
+    }
+
+    private fun loadPhoto() {
+        // Disarankan menggunakan viewLifecycleOwner.lifecycleScope di dalam Fragment
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                // Catatan: Pastikan PhotoApiClient & PhotoAdapter sudah di-import dengan benar
+                val photos = PhotoApiClient.apiService.getPhotos()
+                val adapter = PhotoAdapter(photos)
+                binding.rvGallery.adapter = adapter
+
+                /** List Tampil Vertical */
+               // binding.rvGallery.layoutManager = LinearLayoutManager(requireContext())
+
+                /** List Tampil Horizontal */
+                //binding.rvGallery.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+                /** List Tampil Grid */
+                binding.rvGallery.layoutManager = GridLayoutManager(requireContext(), 2)
+
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
             }
         }
     }
