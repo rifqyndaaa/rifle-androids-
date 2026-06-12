@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.BaseActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.Home.pertemuan_10.TenthActivity
+import com.example.myapplication.Home.pertemuan_13.ThirteenthActivity
 import com.example.myapplication.Home.pertemuan_5.WebViewActivity
 import com.example.myapplication.Home.pertemuan_7.SeventhActivity
 import com.example.myapplication.Home.pertemuan_9.NinthActivity
@@ -45,7 +46,17 @@ class HomeFragment : Fragment() {
         loadCatFact()
         loadPhoto()
 
-        // Setup action listener tombol
+        // Pindah ke sini sesuai instruksi Tahap 11
+        binding.btnPertemuan13.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    ThirteenthActivity::class.java
+                )
+            )
+        }
+
+        // Setup action listener tombol lainnya
         setupClickListeners()
     }
 
@@ -122,19 +133,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadPhoto() {
-        // Disarankan menggunakan viewLifecycleOwner.lifecycleScope di dalam Fragment
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                // Catatan: Pastikan PhotoApiClient & PhotoAdapter sudah di-import dengan benar
                 val photos = PhotoApiClient.apiService.getPhotos()
                 val adapter = PhotoAdapter(photos)
                 binding.rvGallery.adapter = adapter
-
-                /** List Tampil Vertical */
-               // binding.rvGallery.layoutManager = LinearLayoutManager(requireContext())
-
-                /** List Tampil Horizontal */
-                //binding.rvGallery.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
                 /** List Tampil Grid */
                 binding.rvGallery.layoutManager = GridLayoutManager(requireContext(), 2)

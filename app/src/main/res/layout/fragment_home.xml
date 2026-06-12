@@ -137,13 +137,23 @@
                     android:textColor="#1976D2"
                     app:layout_columnWeight="1" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPertemuan13"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="📷 Pertemuan 13"
+                    app:backgroundTint="#3F51B5"
+                    app:cornerRadius="14dp"
+                    app:layout_columnSpan="2"
+                    app:layout_columnWeight="1" />
+
                 <Button
                     android:id="@+id/btnSubmit2"
                     style="@style/Widget.Material3.Button"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_margin="4dp"
-                    android:layout_marginTop="8dp"
                     android:text="Ke MainActivity"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
@@ -207,7 +217,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardCatFact" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvGallery"

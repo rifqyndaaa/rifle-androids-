@@ -8,6 +8,7 @@ import com.example.myapplication.Home.HomeFragment
 import com.example.myapplication.Message.MessageFragment
 import com.example.myapplication.More.MoreFragment
 import com.example.myapplication.databinding.ActivityBaseBinding
+import com.example.myapplication.note.NoteFragment
 
 class BaseActivity : AppCompatActivity() {
 
@@ -21,14 +22,14 @@ class BaseActivity : AppCompatActivity() {
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Toolbar tanpa back button & tanpa title
+        // Toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = ""          // ❌ hilangkan "Base Activity"
-            setDisplayHomeAsUpEnabled(false) // ❌ hilangkan tombol back
+            title = ""
+            setDisplayHomeAsUpEnabled(false)
         }
 
-        // Fragment default
+        // Fragment pertama
         replaceFragment(HomeFragment())
 
         // Bottom Navigation
@@ -46,6 +47,11 @@ class BaseActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.note -> {
+                    replaceFragment(NoteFragment())
+                    true
+                }
+
                 R.id.more -> {
                     replaceFragment(MoreFragment())
                     true
@@ -56,7 +62,6 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
-    // Replace Fragment
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)
