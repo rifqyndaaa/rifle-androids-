@@ -34,6 +34,9 @@
             android:exported="false" />
 
         <activity
+            android:name=".note.NoteFormActivity"
+            android:exported="false" />
+        <activity
             android:name=".Message.tutorial.TutorialMessageActivity"
             android:exported="false" />
 
