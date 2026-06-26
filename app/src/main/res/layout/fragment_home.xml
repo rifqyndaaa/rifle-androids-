@@ -78,6 +78,16 @@
                     app:layout_columnWeight="1" />
 
                 <Button
+                    android:id="@+id/btnPertemuan3"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_margin="4dp"
+                    android:text="Pertemuan 3"
+                    android:textColor="#1976D2"
+                    app:layout_columnWeight="1"/>
+
+                <Button
                     android:id="@+id/btnShowAlertDialog"
                     style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="0dp"

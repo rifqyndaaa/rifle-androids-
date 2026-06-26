@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -26,6 +25,38 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".Home.pertemuan_3.ThirdActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_3.ThirdResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_4.FourthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_5.FifthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_5.WebViewActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_7.SeventhActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_9.NinthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan_10.TenthActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Home.pertemuan_13.ThirteenthActivity"
             android:exported="false" />
 
@@ -34,22 +65,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".note.NoteFormActivity"
-            android:exported="false" />
-        <activity
             android:name=".Message.tutorial.TutorialMessageActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Message.tutorial.TutrialMessageActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_10.TenthActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_9.NinthActivity"
             android:exported="false" />
 
         <activity
@@ -57,7 +73,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".Home.pertemuan_7.SeventhActivity"
+            android:name=".AuthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
 
         <activity
@@ -69,40 +89,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AuthActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_5.WebViewActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_5.FifthActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_3.ThirdResultActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_3.ThirdActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Home.pertemuan_4.FourthActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />

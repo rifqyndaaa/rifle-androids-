@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,9 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentTabCaptureBinding
+import com.example.myapplication.utils.PermissionHelper // Pastikan import ini sesuai dengan lokasi PermissionHelper di projectmu
 
 class TabCaptureFragment : Fragment() {
 
@@ -28,11 +27,8 @@ class TabCaptureFragment : Fragment() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-
             if (result.resultCode == Activity.RESULT_OK) {
-
                 currentPhotoUri?.let { uri ->
-
                     binding.ivCapturedImage.setImageURI(uri)
 
                     context?.sendBroadcast(
@@ -49,7 +45,6 @@ class TabCaptureFragment : Fragment() {
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted ->
-
             if (isGranted) {
                 openCamera()
             } else {
@@ -66,14 +61,7 @@ class TabCaptureFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding =
-            FragmentTabCaptureBinding.inflate(
-                inflater,
-                container,
-                false
-            )
-
+        _binding = FragmentTabCaptureBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -83,58 +71,41 @@ class TabCaptureFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Menggunakan PermissionHelper untuk menangani pengecekan dan request izin kamera
         binding.btnCapture.setOnClickListener {
-
-            if (hasCameraPermission()) {
-                openCamera()
-            } else {
-                permissionLauncher.launch(
+            if (!PermissionHelper.hasPermission(
+                    requireActivity(),
                     Manifest.permission.CAMERA
                 )
+            ) {
+                PermissionHelper.requestPermission(
+                    permissionLauncher,
+                    Manifest.permission.CAMERA
+                )
+            } else {
+                openCamera()
             }
         }
     }
 
-    private fun hasCameraPermission(): Boolean {
-
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     private fun openCamera() {
-
-        val intent =
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-        currentPhotoUri =
-            createGalleryPhotoUri()
-
-        intent.putExtra(
-            MediaStore.EXTRA_OUTPUT,
-            currentPhotoUri
-        )
-
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        currentPhotoUri = createGalleryPhotoUri()
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, currentPhotoUri)
         cameraLauncher.launch(intent)
     }
 
     private fun createGalleryPhotoUri(): Uri {
-
         val folderName = "TestCaptures"
-
         val values = ContentValues().apply {
-
             put(
                 MediaStore.Images.Media.DISPLAY_NAME,
                 "IMG_${System.currentTimeMillis()}.jpg"
             )
-
             put(
                 MediaStore.Images.Media.MIME_TYPE,
                 "image/jpeg"
             )
-
             put(
                 MediaStore.Images.Media.RELATIVE_PATH,
                 "Pictures/$folderName"

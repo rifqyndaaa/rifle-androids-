@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.BaseActivity
 import com.example.myapplication.MainActivity
+import com.example.myapplication.Home.pertemuan_3.ThirdActivity
 import com.example.myapplication.Home.pertemuan_10.TenthActivity
 import com.example.myapplication.Home.pertemuan_13.ThirteenthActivity
 import com.example.myapplication.Home.pertemuan_5.WebViewActivity
@@ -24,6 +25,7 @@ import com.example.myapplication.data.api.PhotoApiClient
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import kotlin.jvm.java
 
 class HomeFragment : Fragment() {
 
@@ -80,6 +82,11 @@ class HomeFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .show()
+        }
+        binding.btnPertemuan3.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), ThirdActivity::class.java)
+            )
         }
 
         // WebView
