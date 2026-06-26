@@ -11,8 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityThirdBinding
-import com.example.myapplication.utils.NotificationHelper
 import com.example.myapplication.utils.PermissionHelper
+import com.example.myapplication.utils.ReminderHelper
+import java.util.Calendar
 
 class ThirdActivity : AppCompatActivity() {
     private lateinit var binding: ActivityThirdBinding
@@ -60,8 +61,6 @@ class ThirdActivity : AppCompatActivity() {
         }
 
         // --- Action Tombol Kirim ---
-        // PENTING: Pastikan ID di XML kamu adalah btnkirim atau btnKirim.
-        // Di bawah ini disesuaikan dengan kode pertama kamu: btnkirim
         binding.btnkirim.setOnClickListener {
             val noTujuan = binding.inputNoTujuan.text.toString().trim()
 
@@ -72,60 +71,33 @@ class ThirdActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                Toast.makeText(
-                    this,
-                    "Nomor yang dimasukkan: $noTujuan",
-                    Toast.LENGTH_SHORT
-                ).show()
+                // 1. Mengambil instance waktu sekarang dan menambahkan 1 menit ke depan untuk alarm
+                val calendar = Calendar.getInstance().apply {
+                    add(Calendar.MINUTE, 1)
+                }
 
-                // Menyiapkan Intent menuju ThirdResultActivity
-                val intent = Intent(this, ThirdResultActivity::class.java)
-                intent.putExtra("nomor", noTujuan)
-
-                // Memicu Local Notification menggunakan Helper
-                NotificationHelper.showNotification(
-                    this,
-                    "Pesanan Anda",
-                    "Halo $noTujuan, Pesanan Anda Sedang Diproses",
-                    intent
+                // 2. Memasang alarm/reminder menggunakan ReminderHelper
+                ReminderHelper.setReminder(
+                    context = this,
+                    hour = calendar.get(Calendar.HOUR_OF_DAY),
+                    minute = calendar.get(Calendar.MINUTE),
+                    title = "Reminder 1 Menit",
+                    message = "Halo $noTujuan, reminder ini muncul 1 menit setelah tombol ditekan",
+                    targetActivity = ThirdResultActivity::class.java
                 )
 
-
-                // --- Action Tombol Kirim ---
-                binding.btnkirim.setOnClickListener {
-                    val noTujuan = binding.inputNoTujuan.text.toString().trim()
-
-                    if (noTujuan.isEmpty()) {
-                        Toast.makeText(
-                            this,
-                            "Silakan masukkan nomor tujuan",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Nomor yang dimasukkan: $noTujuan",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        // 1. Menyiapkan Intent menuju ThirdResultActivity
-                        val intent = Intent(this, ThirdResultActivity::class.java)
-                        intent.putExtra("nomor", noTujuan)
-
-                        // 2. PINDAH HALAMAN LANGSUNG (Diaktifkan kembali)
-                        startActivity(intent)
-
-                        // 3. MEMICU NOTIFIKASI
-                        NotificationHelper.showNotification(
-                            this,
-                            "Pesanan Anda",
-                            "Halo $noTujuan, Pesanan Anda Sedang Diproses",
-                            intent
-                        )
-                    }
+                // 3. Pindah Halaman ke ThirdResultActivity dengan membawa data nomor tujuan
+                val intent = Intent(this, ThirdResultActivity::class.java).apply {
+                    putExtra("nomor", noTujuan)
                 }
-            }
+                startActivity(intent)
 
+                Toast.makeText(
+                    this,
+                    "Data dikirim! Silahkan tunggu 1 Menit untuk menerima Notifikasi...",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
